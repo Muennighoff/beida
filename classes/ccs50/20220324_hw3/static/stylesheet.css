@@ -1,0 +1,7 @@
+table{border:2px solid black}
+td{width:10mm;height:10mm;text-align:center;}
+.rightBolder{border-right:2px solid black}
+.bottomBolder{border-bottom:2px solid black}
+.zeroCell{color:red;font-weight:bold}
+.inputCellDefault{width:10mm;height:10mm;text-align:center}
+.inputCellRed{background-color:red;}

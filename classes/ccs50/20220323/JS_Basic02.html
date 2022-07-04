@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Basic</title>
+ </head>
+ <body>
+	<!--bind绑定click事件，但并没有触发trigger-->
+	<!--onblur失去焦点时的事件-->
+	<!--this是一个关键字，代表触发事件的元素-->
+	<p onclick="alert(this.innerHTML);">Hello,<span>world!</span></p>
+	<p id="helloPKU">Hello,PKU!</p>
+	<p class="schoolName">PKU</p>
+	<p class="schoolName">Tsinghua</p>
+	<p class="schoolName">RUC</p>
+	<button onclick="allP();">所有P</button>
+
+	<script type="text/javascript">
+		var ele=document.getElementById("helloPKU");
+		ele.onclick=function(){
+				alert(this.innerHTML);
+		}
+
+		var eles=document.getElementsByClassName("schoolName");
+		for(var i in eles){
+				eles[i].onclick=function(){
+						alert("Hello,"+this.innerHTML+"!");
+				}
+		}
+		function allP(){
+				var elements=document.getElementsByTagName("p");
+				for(var i in elements)
+					elements[i].onclick=function(){
+							alert(this.innerHTML+" after Button Clicked!");
+					}
+		}
+	</script>
+ </body>
+</html>

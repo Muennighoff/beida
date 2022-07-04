@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>异步</title>
+	<script type="text/javascript"src="./static/js/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+	用户名：<input type=text id="newUserName" name="newUserName"><span id="checkState">()</span><br>
+	密　码：<input type=text id="newUserPassword" name="newUserPassword"><br>
+	<button id="btnOK">确定</button>
+  <script type="text/javascript">
+		$("#checkState").hide();
+		$("#newUserName").keyup(function(e){
+				var inputData=$(this).val();
+				//从input等输入组件取得数据，用val()，其他元素用html()
+				//if (inputData.length==0)return false;
+				if(e.keyCode==13){
+					$("#newUserPassword").focus();//获得焦点
+					//从后台取用户是否已经被注册
+					$.post("/getUserState",{userName:inputData},function(rtnData){
+						if(rtnData=='0')
+							$("#checkState").html("(恭喜你!可以注册!)").show();
+						else
+							$("#checkState").html("(抱歉!该用户名已注册!)").show();
+					});
+				}
+		});
+		$("#btnOK").click(function(){
+			var userName=$("#newUserName").val();
+			var userPassword=$("#newUserPassword").val();
+			$.post("/userAdd",{userName:userName,userPWD:userPassword},function(rtn){
+				alert(rtn);
+			});
+		});
+  </script>
+ </body>
+</html>

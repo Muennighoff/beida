@@ -1,0 +1,44 @@
+from flask import Flask,request,render_template #新增代码。装入Flask
+
+webApp=Flask(__name__) #新增代码
+
+@webSudoku.route("/") #新增代码，对应执行root()函数
+def root():
+	print(len(dataSudoku))
+	links="<a href='/addSudoku' id='addData'>增加数据</a>"
+
+	if len(dataSudoku)!=0:
+		links+="<a href='/playSudoku' id='playSudoku'>我要数独!!!</a>"
+
+	return render_template("index.html",URL=links)#发送静态页面
+
+@webSudoku.route("/addSudoku") #增加数独数据
+def addSudokuData():
+	return webSudoku.send_static_file("addData.html")
+
+@webSudoku.route("/playSudoku") #增加数独数据
+def playSudoku():
+	return webSudoku.send_static_file("playSudoku.html")
+
+@webSudoku.route("/saveData",methods=("post",)) #增加数独数据
+def saveSudoku():
+	rcvData=request.form["fillData"]
+	sudokuFile=open("./data/sudoku.data","w",encoding="utf-8")
+	dataSudoku.append(rcvData)
+
+	#写入文件
+	for everyLine in dataSudoku:
+		print(everyLine,file=sudokuFile)
+	sudokuFile.close()
+	
+	print(rcvData)
+	return "Saved"+rcvData
+
+@webSudoku.route("/getSudokuData",methods=("post",)) #增加数独数据
+def getSudokuData():
+	sudokuIdx=random.randint(0,len(dataSudoku))
+	return dataSudoku[sudokuIdx]
+
+
+if __name__=="__main__": #新增代码
+	webSudoku.run(host="0.0.0.0",port=80,debug=True)

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Basic</title>
+	<script type="text/javascript" src="./static/jquery-3.6.0.min.js"></script>
+	<style type="text/css">
+		.lightIt{background-color:red;}
+	</style>
+ </head>
+ <body>
+	<p onclick="alert(this.innerHTML);">Hello,world!</p>
+	<p id="helloPKU">Hello,PKU!</p>
+	<p class="schoolName">PKU</p>
+	<p class="schoolName">Tsinghua</p>
+	<p class="schoolName">RUC</p>
+	<button onclick="allP();">所有P</button>
+	<script type="text/javascript">
+		//$("body").css("background-color","red");
+		//$(".schoolName").css("background-color","red");
+		$(".schoolName").mouseover(function(){
+			$(this).addClass("lightIt");	
+		});
+		$(".schoolName").mouseout(function(){
+			$(this).removeClass("lightIt");	
+		});
+	</script>
+ </body>
+</html>

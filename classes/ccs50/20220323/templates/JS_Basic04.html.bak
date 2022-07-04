@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Basic</title>
+	<script type="text/javascript" src="./static/jquery-3.6.0.min.js"></script>
+	<style type="text/css">
+		.lightIt{background-color:red;}
+		td{width:10mm;height:10mm;text-align:center}
+		.rightBorder{border-right:4px solid black}
+		.bottomBorder{border-bottom:4px solid black}
+		.canFill{background-color:red;color:white;font-weight:bold}
+	</style>
+ </head>
+ <body>
+	<div id="Sudoku"></div>
+	<button onclick="getSvrData()">获得服务器端数据</button>
+	<img src="./static/img/1.webp" No="1">
+	<script type="text/javascript">
+		var dataSudoku="{{placeContent|safe}}";
+		var sudoku="<table cellpadding='0' cellspacing='0' border='4'>"
+		for(var i=0;i<9;++i){
+				sudoku+="<tr>";
+				for(var j=0;j<9;++j){
+					cellNum=dataSudoku[i*9+j]=="0"?"":dataSudoku[i*9+j];
+					classValue="";
+					if(cellNum=="")classValue+=" canFill";
+					if(j%3==2 && j!=8)classValue+=" rightBorder";
+					if(i%3==2 && i!=8)classValue+=" bottomBorder";
+					if (classValue.length>0){
+							sudoku+="<td class='"+classValue+"'>"+cellNum+"</td>";
+					}else{
+							sudoku+="<td>"+cellNum+"</td>";
+					}
+				}
+				sudoku+="</tr>";
+		}
+		sudoku+="</table>";
+		$("#Sudoku").html(sudoku);
+		$(".canFill").click(function(){
+				$(this).html(prompt("请填入1-9！",9));
+		});
+		var TDs=""
+		$("td").each(function(){
+			TDs+=$(this).html();
+		});
+		alert(TDs);
+		function getSvrData(){
+				$.get("/sudokuData",function(svrData){
+					alert(svrData);/*AJAX*/
+				})
+		}
+		$("img").click(function(){
+				var nowImgNo=$(this).attr("No");
+				var nextImgNo=parseInt(nowImgNo)+1;
+				if (nextImgNo>2)nextImgNo=1;
+				$(this).attr("No",nextImgNo);
+				$(this).attr("src","./static/img/"+nextImgNo+".webp");
+		});
+		function changeImg(){
+				var nowImgNo=$("img").attr("No");
+				var nextImgNo=parseInt(nowImgNo)+1;
+				if (nextImgNo>2)nextImgNo=1;
+				$(this).attr("No",nextImgNo);
+				$(this).attr("src","./static/img/"+nextImgNo+".webp");
+		}
+		setInterval("changeImg()",3000);
+
+	</script>
+ </body>
+</html>

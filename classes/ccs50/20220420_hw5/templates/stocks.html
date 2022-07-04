@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Stocks</title>
+	<script type="text/javascript"src="./static/js/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+<div>
+        <form id="date" action="/getData" method="POST">
+                <label>股票:
+                <select name="stock">
+                        <option value="000001" selected="">000001</option><option value="000002">000002</option><option value="000003">000003</option><option value="000004">000004</option><option value="000005">000005</option>        </select>
+                            &nbsp;&nbsp;
+                </label>
+                <label>年份:
+                <select name="year">
+                        <option value="2021">2021</option><option value="2020" selected="">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option>         </select>
+                                &nbsp;&nbsp;
+            </label>    
+            <label>月份:
+                <select name="month">
+                    <option value="12">12</option>
+                    <option value="11">11</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>       
+                </select>
+                            &nbsp;&nbsp;
+                        </label>    
+                <!--             
+                <select name="season">
+                        <option value="4">四季度</option><option value="3">三季度</option><option value="2" selected="">二季度</option><option value="1">一季度</option>            </select>
+                                &nbsp;&nbsp;
+                -->  
+                <input type="submit" value="查询" class="search_btn">
+        </form>
+</div>
+
+<div id="stocks">{{placeContent|safe}}</div>
+
+<script>
+    $("#retrieve").click(function(){
+            var stock=$("#stock").val();
+            if (stock.length==0)return false;
+
+            $.get("/getData",{stock:stock},function(rtnData){
+                    $("#stocks").html(rtnData);
+            });
+    });
+</script>
+
+</body>
+</html>

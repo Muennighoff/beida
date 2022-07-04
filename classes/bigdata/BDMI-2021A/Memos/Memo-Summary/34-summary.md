@@ -1,0 +1,2 @@
+- [第一周小结](https://gitee.com/zhenchen3419/BDMI-2021A/blob/master/Memos/Study-Memo/34-Day1.md)
+- [第二周小结](https://gitee.com/zhenchen3419/BDMI-2021A/blob/master/Memos/Study-Memo/34-Day2.md)

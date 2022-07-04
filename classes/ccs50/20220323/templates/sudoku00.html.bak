@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="dxf">
+  <meta name="Keywords" content="Sudoku">
+  <title>Sudoku</title>
+	<style type=text/css>
+		table{border:2px solid black}
+		td{width:10mm;height:10mm;text-align:center;}
+		.rightBolder{border-right:2px solid black}
+		.bottomBolder{border-bottom:2px solid black}
+		.zeroCell{color:red;font-weight:bold}
+	</style>
+ </head>
+ <body style="width:800px;margin:0px auto;"><!--内容居中-->
+  {{placeContent}}
+	<script type="text/javascript">
+		var zeroCells=document.getElementsByClassName("zeroCell");
+		for(var i in zeroCells){
+				zeroCells[i].onclick=function(){
+						this.innerHTML=prompt("请输入0-9数字");
+				};
+		}
+	</script>
+ </body>
+</html>

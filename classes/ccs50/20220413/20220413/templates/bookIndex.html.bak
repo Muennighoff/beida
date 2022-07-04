@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>图书管理</title>
+	<script type="text/javascript"src="./static/js/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+	本图书馆有：{{bookAmount}}册图书<br>
+	<input type=text id="bookQuery"><button id="go2Search">Go</button>
+  <div id="bookList"></div>
+	<script type="text/javascript">
+		function runBookList(bookList){
+			var bookArray=bookList.split("###");
+			var showList="<select>";
+			for(var bookNo in bookArray){
+				showList+="<option>"+bookArray[bookNo]+"</option>";
+			}
+			showList+="</select>";
+			return showList;
+		}
+		
+		//键盘控制
+		$("#bookQuery").keyup(function(event){
+			if(event.keyCode==13){
+				$("#go2Search").trigger("click");//模拟click时间
+			}//trigger出发
+		});
+
+		$("#go2Search").click(function(){
+				var query=$("#bookQuery").val();
+				if (query.length==0)return false;
+
+				$.get("/getData",{svrQuery:query},function(rtnData){
+						$("#bookList").html(runBookList(rtnData));
+				});
+		});
+  </script>
+ </body>
+</html>

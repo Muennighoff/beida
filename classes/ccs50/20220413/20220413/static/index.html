@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>异步</title>
+	<script type="text/javascript"src="./static/js/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+  <script type="text/javascript">
+		/*异步同步*/
+		/*设置ajax的同步或异步属性，注意true后不能有;*/
+		
+		$.ajaxSetup({async:true});
+		
+		var showData="I am not from Server!";
+		$.get("/getData",function(rtnData){
+			showData=rtnData;	
+			alert(showData);//?I am not from server!
+		});
+		alert(showData);//?I am not from server!
+		
+		
+		$.ajax({  
+					url: "/getData",  
+					async: false,  
+					success: function(rtnData){
+							showData=rtnData;
+					}  
+		}); 
+		alert(showData);
+
+
+		/*
+			与success类似的事件有：
+			beforeSend、complete、dataFilter、error、success等。
+		*/
+  </script>
+ </body>
+</html>

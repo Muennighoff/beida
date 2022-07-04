@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Basic</title>
+ </head>
+ <body>
+	<script type="text/javascript">
+		var arrData=[12,123,11,32,43,10];//相当于Python的list
+		
+		alert(arrData[2]);//下标访问成员值
+		arrData[2]=99;//下标方式改变成员值
+		alert(arrData.length);/*获得数组长度,此为属性，没有括号*/
+		arrData.sort();/*默认转换为字符串排序*/
+		alert(arrData);
+
+		arrData.sort(function(a,b){return b-a;});/*排序函数*/
+		alert(arrData);
+		
+		arrData.reverse();
+		alert(arrData);
+		
+		var showContent="";
+		for(var i in arrData){
+				showContent+=i+" ";/*显示编号*/
+		}
+		alert(showContent+"i是什么东西！");
+
+		var showContent="";
+		for(var i in arrData){
+				showContent+=arrData[i]+" ";/*显示编号*/
+		}
+		alert(showContent);
+
+		var myData=[];
+		myData["Apple"]="苹果";
+		myData["Orange"]="橙子";
+		myData["Banana"]="香蕉";
+		alert(myData["Apple"]);
+		alert(myData.length);/*结果为0*/
+		alert(arrData instanceof Array);/*输出：true*/
+		alert(arrData instanceof Array);/*输出：true*/
+
+		var hisData={"Apple":"苹果",Orange:"橙子",Banana:"香蕉",Cherry:["樱桃","车厘子"]};//类似Python的字典
+
+		alert(hisData.Apple);/*输出：苹果*/
+		alert(hisData["Banana"]+"ABC");/*输出：苹果*/
+		alert(hisData.Cherry[0]);
+	</script>
+ </body>
+</html>

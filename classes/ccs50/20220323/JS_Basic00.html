@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Basic</title>
+ </head>
+ <body>
+	<script type="text/javascript">
+		/*alert("Hello,world!");
+		alert("Hello,world!"[1]);//输出：
+
+		var myName=prompt("Pls input your name!","John");
+		alert(myName);*/
+
+		var firstNum=prompt("Pls input first number:",100);
+		var secondNum=prompt("Pls input second number:",200);
+
+		//parseInt()转换为整数，parseFloat()转换为浮点数
+		//object.toString()转换为字符串
+
+		alert(1*firstNum+10+secondNum);/*output:*/
+		
+		alert(firstNum-secondNum);
+		alert(firstNum*secondNum);
+		
+		//判断是否质数
+		function isPrime(N){
+			if(N<2)return false;
+			for(var i=2;i<N;++i){
+					if(N%i==0)return false;
+			}
+			return true;
+		}
+		var showContent="";
+		for(var i=1;i<20;i++){
+				if (isPrime(i)==true){
+					showContent+=i+" ";
+				}
+		}
+		alert(showContent+"Prime!");
+		alert(showContent.slice(0,-1)+"Prime!");
+	</script>
+ </body>
+</html>

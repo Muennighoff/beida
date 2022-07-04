@@ -1,0 +1,5 @@
+GitHub - deepmind/alphafold: Open source code for AlphaFold.
+
+GitHub - lucidrains/alphafold2: To eventually become an unofficial Pytorch implementation / replication of Alphafold2, as details of the architecture get released
+
+Fabian Fuchs (fabianfuchsml.github.io)

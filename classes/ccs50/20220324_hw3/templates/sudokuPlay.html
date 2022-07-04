@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="Author" content="dxf">
+	<meta name="Keywords" content="Sudoku">
+	<title>Sudoku</title>
+	<script type="text/javascript" src="./static/jquery-3.6.0.min.js"></script>
+	<link href="./static/stylesheet.css?version=1" rel="stylesheet" type="text/css">
+</head>
+
+<body style="width:800px;margin:0px auto;">
+	<!--内容居中-->
+	<form method="post">
+		{{placeContent|safe}}
+	</form>
+	<script>
+		function restrictKeys() {
+			var e = event || window.event;  // get event object
+			var key = e.keyCode || e.which; // get key cross-browser
+
+			if (key < 48 || key > 57) { //if it is not a number ascii code
+				//Prevent default action, which is inserting character
+				if (e.preventDefault) e.preventDefault(); // normal browsers
+				e.returnValue = false; // IE
+			}
+		}
+		// Whenever anything is inputted in the documented trigger this POST to flask
+		document
+			.addEventListener("input", e => {
+				fetch("http://127.0.0.1:5000/sudokuPlay", {
+					method: "POST",
+					headers: {
+						"Accept": "application/json",
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						// Get values of all input fields as an array; also see
+						// https://stackoverflow.com/questions/2600343/why-does-document-queryselectorall-return-a-staticnodelist-rather-than-a-real-ar
+						cells: [...document.querySelectorAll("input")].map(data => data.value)
+					})
+				})
+					.then((response) => {
+						window.location.replace('/sudokuPlayUpdate');
+					})
+			})
+			;  
+	</script>
+	<a href="/">
+		<button>回去</button>
+	</a>
+</body>
+
+</html>

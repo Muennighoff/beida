@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Basic</title>
+	<script type="text/javascript" src="./static/jquery-3.6.0.min.js"></script>
+	<style type="text/css">
+		.lightIt{background-color:red;}
+		td{width:10mm;height:10mm;text-align:center}
+		.rightBorder{border-right:4px solid black}
+		.bottomBorder{border-bottom:4px solid black}
+		.canFill{background-color:red;color:white;font-weight:bold}
+	</style>
+ </head>
+ <body>
+	<div id="Sudoku"></div>
+	<script type="text/javascript">
+		var dataSudoku="700000000006750209004090000400002090080000020050800003000010500103048600000000001";
+		var sudoku="<table cellpadding='0' cellspacing='0' border='4'>"
+		for(var i=0;i<9;++i){
+				sudoku+="<tr>";
+				for(var j=0;j<9;++j){
+					cellNum=dataSudoku[i*9+j]=="0"?"":dataSudoku[i*9+j];
+					classValue="";
+					if(cellNum=="")classValue+=" canFill";
+					if(j%3==2 && j!=8)classValue+=" rightBorder";
+					if(i%3==2 && i!=8)classValue+=" bottomBorder";
+					if (classValue.length>0){
+							sudoku+="<td class='"+classValue+"'>"+cellNum+"</td>";
+					}else{
+							sudoku+="<td>"+cellNum+"</td>";
+					}
+				}
+				sudoku+="</tr>";
+		}
+		sudoku+="</table>";
+		$("#Sudoku").html(sudoku);
+		$(".canFill").click(function(){
+				$(this).html(prompt("请填入1-9！",9));
+		});
+		var TDs=""
+		$("td").each(function(){
+			TDs+=$(this).html();
+		});
+		alert(TDs);
+	</script>
+ </body>
+</html>
